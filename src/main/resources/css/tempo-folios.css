@@ -1,0 +1,23 @@
+.folio-id {
+	width: 50px;
+}
+
+.folio-name {
+	width: 200px;
+}
+
+.issue-key {
+	width: 50px;
+}
+
+.issue-summary {
+	width: 200px;
+}
+
+.issue-type {
+	width: 50px;
+}
+
+.issue-assignee {
+	width: 50px;
+}

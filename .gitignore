@@ -1,0 +1,5 @@
+.idea
+amps-standalone
+target
+*.iml
+*.pyc

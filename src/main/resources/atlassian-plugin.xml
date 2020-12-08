@@ -1,0 +1,48 @@
+<atlassian-plugin key="com.ferencnagy.tempo.folios.tempo-folios" name="${project.name}" plugins-version="2">
+	<plugin-info>
+		<description>${project.description}</description>
+		<version>${project.version}</version>
+		<vendor name="${project.organization.name}" url="${project.organization.url}" />
+		<param name="plugin-icon">images/pluginIcon.png</param>
+		<param name="plugin-logo">images/pluginLogo.png</param>
+	</plugin-info>
+
+	<!-- add our i18n resource -->
+	<resource type="i18n" name="i18n" location="tempo-folios"/>
+
+	<!-- add our web resources -->
+	<web-resource key="tempo-folios-resources" name="tempo-folios Web Resources">
+		<dependency>com.atlassian.auiplugin:ajs</dependency>
+
+		<resource type="download" name="tempo-folios.css" location="/css/tempo-folios.css"/>
+		<resource type="download" name="tempo-folios.js" location="/js/tempo-folios.js"/>
+		<resource type="download" name="images/" location="/images"/>
+
+		<context>com.ferencnagy.tempo.folios.tempo-folios</context>
+	</web-resource>
+
+	<!-- top navigation menu -->
+	<web-section key="tempo-folios-main-menu-section" name="Tempo Folios Main Menu Section" location="tempo-folios-main-menu" weight="10" />
+	<web-item key="tempo-folios-main-menu" name="Tempo Folios Main Menu Link" section="system.top.navigation.bar" weight="70">
+		<label>Tempo Folios</label>
+		<link linkId="tempo-folios-main-menu">/secure/tempo-folios.jspa</link>
+		<condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition" />
+	</web-item>
+	<web-item key="tempo-folios-main-menu-list" name="List Tempo Folios" section="tempo-folios-main-menu/tempo-folios-main-menu-section" weight="10">
+		<label>Folio List</label>
+		<link linkId="tempo-folios-main-menu-list">/secure/tempo-folios.jspa</link>
+	</web-item>
+
+	<!-- actions -->
+	<webwork1 key="tempo-folios-actions" name="Tempo Folios Actions" class="java.lang.Object" roles-required="use">
+		<description>Web actions to work with Tempo Folios.</description>
+		<actions>
+			<action name="com.ferencnagy.tempo.folios.web.action.ListFoliosAction" alias="tempo-folios">
+				<view name="success">/templates/tempo-folios.vm</view>
+				<view name="error">/secure/views/permissionviolation.jsp</view>
+			</action>
+		</actions>
+	</webwork1>
+
+	<component-import key="PermissionManager" interface="com.atlassian.jira.security.PermissionManager" />
+</atlassian-plugin>
